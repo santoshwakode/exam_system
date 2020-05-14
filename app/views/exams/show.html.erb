@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start duration:</strong>
+  <%= @exam.start_duration %>
+</p>
+
+<p>
+  <strong>End duration:</strong>
+  <%= @exam.end_duration %>
+</p>
+
+<p>
+  <strong>Exam format:</strong>
+  <%= @exam.exam_format_id %>
+</p>
+
+<%= link_to 'Edit', edit_exam_path(@exam) %> |
+<%= link_to 'Back', exams_path %>

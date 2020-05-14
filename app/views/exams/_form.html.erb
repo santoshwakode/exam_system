@@ -1,0 +1,29 @@
+<%= form_for(@exam) do |f| %>
+  <% if @exam.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
+
+      <ul>
+      <% @exam.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_duration %><br>
+    <%= f.datetime_select :start_duration %>
+  </div>
+  <div class="field">
+    <%= f.label :end_duration %><br>
+    <%= f.datetime_select :end_duration %>
+  </div>
+  <div class="field">
+    <%= f.label :exam_format_id %><br>
+    <%= f.number_field :exam_format_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

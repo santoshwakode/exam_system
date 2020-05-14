@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Exam Formats</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Question type</th>
+      <th>Subject</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @exam_formats.each do |exam_format| %>
+      <tr>
+        <td><%= exam_format.question %></td>
+        <td><%= exam_format.question_type %></td>
+        <td><%= exam_format.subject_id %></td>
+        <td><%= link_to 'Show', exam_format %></td>
+        <td><%= link_to 'Edit', edit_exam_format_path(exam_format) %></td>
+        <td><%= link_to 'Destroy', exam_format, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Exam format', new_exam_format_path %>

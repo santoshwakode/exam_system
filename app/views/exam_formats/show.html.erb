@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @exam_format.question %>
+</p>
+
+<p>
+  <strong>Question type:</strong>
+  <%= @exam_format.question_type %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @exam_format.subject_id %>
+</p>
+
+<%= link_to 'Edit', edit_exam_format_path(@exam_format) %> |
+<%= link_to 'Back', exam_formats_path %>

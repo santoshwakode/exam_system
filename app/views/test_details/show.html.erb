@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Exam format:</strong>
+  <%= @test_detail.exam_format_id %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @test_detail.answer %>
+</p>
+
+<p>
+  <strong>Exam detail:</strong>
+  <%= @test_detail.exam_detail_id %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @test_detail.score %>
+</p>
+
+<%= link_to 'Edit', edit_test_detail_path(@test_detail) %> |
+<%= link_to 'Back', test_details_path %>
