@@ -1,9 +1,8 @@
+#columns: name, address, educational_class
+
 class Student < ActiveRecord::Base
-	belongs_to :teacher
-	has_many :exam_details
-
-    validates :name, presence: true  
-
-
-
+	has_many :tests
+	has_many :exams, through: :tests
 end
+
+

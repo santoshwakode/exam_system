@@ -12,20 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :exam_format_id %><br>
-    <%= f.number_field :exam_format_id %>
+    <%= f.label :test_id %>:- 
+    <%= f.object.test.exam.name%>
   </div>
   <div class="field">
-    <%= f.label :answer %><br>
-    <%= f.text_area :answer %>
+    <%= f.label :student_id %>:- 
+    <%= f.object.student.name %>
   </div>
   <div class="field">
-    <%= f.label :exam_detail_id %><br>
-    <%= f.number_field :exam_detail_id %>
+    <%= f.label :question_detail_id %>:- 
+    <%= f.object.question_detail.question %>
+  </div>
+  <div class="field">
+    <%= f.label :answer %>:- 
+    <%= f.object.answer %>
   </div>
   <div class="field">
     <%= f.label :score %><br>
     <%= f.number_field :score %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
   </div>
   <div class="actions">
     <%= f.submit %>

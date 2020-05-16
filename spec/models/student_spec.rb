@@ -1,16 +1,5 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Student do
-
-  it { should have_many(:exam_details) }
-  it { should belong_to(:teacher) }
-
-  describe "#valid?" do
-
-    it { should validate_presence_of(:name) }
-
-  end
-
-
+RSpec.describe Student, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
-

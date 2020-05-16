@@ -6,18 +6,21 @@
 </p>
 
 <p>
-  <strong>Teacher:</strong>
-  <%= @student.teacher_id %>
+  <strong>Address:</strong>
+  <%= @student.address %>
 </p>
 
 <p>
-  <strong>Subject:</strong>
-  <%= @student.subject_id %>
+  <strong>Class:</strong>
+  <%= @student.educational_class %>
 </p>
 
 <p>
-  <strong>Fees:</strong>
-  <%= @student.fees %>
+  <strong>Assigned Tests: </strong><br>
+  <% @student.tests.incomplete.each do|test| %>
+    <%= test.exam.name %>   <%= link_to 'Take Test', take_test_test_details_path(student_id: @student.id, exam_id: test.exam.id), data: { confirm: 'Are you sure to start test?' } %>
+    <br>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_student_path(@student) %> |

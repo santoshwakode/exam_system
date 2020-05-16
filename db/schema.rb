@@ -11,66 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200514110048) do
+ActiveRecord::Schema.define(version: 20200516064720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "exam_details", force: :cascade do |t|
-    t.integer  "exam_id"
+  create_table "exams", force: :cascade do |t|
+    t.string   "name"
     t.integer  "teacher_id"
-    t.integer  "student_id"
-    t.integer  "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "exam_formats", force: :cascade do |t|
-    t.string   "question"
+  create_table "question_details", force: :cascade do |t|
+    t.integer  "exam_id"
+    t.text     "question"
     t.string   "question_type"
-    t.integer  "subject_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  create_table "exams", force: :cascade do |t|
-    t.datetime "start_duration"
-    t.datetime "end_duration"
-    t.integer  "exam_format_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
   create_table "students", force: :cascade do |t|
     t.string   "name"
-    t.integer  "teacher_id"
-    t.integer  "subject_id"
-    t.float    "fees"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "subjects", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "address"
+    t.string   "educational_class"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "teachers", force: :cascade do |t|
     t.string   "name"
-    t.integer  "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "test_details", force: :cascade do |t|
-    t.integer  "exam_format_id"
+    t.integer  "test_id"
+    t.integer  "student_id"
+    t.integer  "question_detail_id"
     t.text     "answer"
-    t.integer  "exam_detail_id"
     t.integer  "score"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "status"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.integer  "exam_id"
+    t.integer  "student_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "status"
   end
 
 end

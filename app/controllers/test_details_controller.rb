@@ -61,6 +61,20 @@ class TestDetailsController < ApplicationController
     end
   end
 
+  def take_test
+    @test = Test.where(student_id: params[:student_id],  exam_id: params[:exam_id]).first
+    @test.update(start_time: Time.now, status: "Started") unless @test.status == "Ended"
+  end
+
+  def take_exam    
+    test_details = []
+    params[:exam_details].each{|que, ans| test_details << { test_id: params[:test_id], student_id: params[:student_id], question_detail_id: que, answer: ans } }
+    TestDetail.create(test_details)
+    test = Test.find(params[:test_id])
+    test.update(end_time: Time.now, status: "Ended")
+    redirect_to :back, notice: 'Test completed successfully.'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_test_detail
@@ -69,6 +83,6 @@ class TestDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_detail_params
-      params.require(:test_detail).permit(:exam_format_id, :answer, :exam_detail_id, :score)
+      params.require(:test_detail).permit(:test_id, :student_id, :question_detail_id, :answer, :score, :status)
     end
 end

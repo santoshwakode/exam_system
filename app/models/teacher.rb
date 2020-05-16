@@ -1,8 +1,8 @@
-class Teacher < ActiveRecord::Base
-	has_many :students
-	has_many :exam_details
-	belongs_to :subject
+#columns: name
 
-	validates :name, presence: true  
+class Teacher < ActiveRecord::Base
+
+	has_many :exams
+
 
 end

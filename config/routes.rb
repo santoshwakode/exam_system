@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
-  resources :test_details
-  resources :exam_details
-  resources :exams
-  resources :exam_formats
+  resources :exams do
+    post :assign_exam, on: :collection
+    get :assign_test, on: :member
+  end
+  resources :test_details do
+    get :take_test, on: :collection
+    post :take_exam, on: :collection
+  end
+  resources :question_details
   resources :teachers
   resources :students
-  resources :subjects
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+    root 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

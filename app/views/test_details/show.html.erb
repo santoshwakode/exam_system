@@ -1,8 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Exam format:</strong>
-  <%= @test_detail.exam_format_id %>
+  <strong>Test:</strong>
+  <%= @test_detail.test_id %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @test_detail.student_id %>
+</p>
+
+<p>
+  <strong>Question detail:</strong>
+  <%= @test_detail.question_detail_id %>
 </p>
 
 <p>
@@ -11,13 +21,13 @@
 </p>
 
 <p>
-  <strong>Exam detail:</strong>
-  <%= @test_detail.exam_detail_id %>
+  <strong>Score:</strong>
+  <%= @test_detail.score %>
 </p>
 
 <p>
-  <strong>Score:</strong>
-  <%= @test_detail.score %>
+  <strong>Status:</strong>
+  <%= @test_detail.status %>
 </p>
 
 <%= link_to 'Edit', edit_test_detail_path(@test_detail) %> |

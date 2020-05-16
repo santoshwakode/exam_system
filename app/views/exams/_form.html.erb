@@ -1,4 +1,4 @@
-<%= form_for(@exam) do |f| %>
+<%= nested_form_for(@exam) do |f| %>
   <% if @exam.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
@@ -12,17 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :start_duration %><br>
-    <%= f.datetime_select :start_duration %>
-  </div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+ 
   <div class="field">
-    <%= f.label :end_duration %><br>
-    <%= f.datetime_select :end_duration %>
+    <%= f.label :teacher_id %><br>
+    <%= f.collection_select(:teacher_id, Teacher.all, :id, :name) %>
   </div>
-  <div class="field">
-    <%= f.label :exam_format_id %><br>
-    <%= f.number_field :exam_format_id %>
-  </div>
+
+  <%= f.fields_for :question_details do |question_detail| %>
+    <%= question_detail.text_field :question %>
+    <%= question_detail.select :question_type, options_for_select(["Text", "Date"].collect {|qt| [ qt, qt] }, question_detail.object.question_type) %>
+    <%= question_detail.link_to_remove "Remove this question" %>
+  <% end %>
+  <p><%= f.link_to_add "Add a question", :question_details %></p>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

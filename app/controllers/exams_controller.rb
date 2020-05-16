@@ -1,5 +1,5 @@
 class ExamsController < ApplicationController
-  before_action :set_exam, only: [:show, :edit, :update, :destroy]
+  before_action :set_exam, only: [:show, :edit, :update, :destroy, :assign_test]
 
   # GET /exams
   # GET /exams.json
@@ -61,6 +61,17 @@ class ExamsController < ApplicationController
     end
   end
 
+  def assign_test
+    @students = Student.all
+  end
+
+  def assign_exam
+    students_exams = []
+    params[:assign_exam_test].keys.each{|student| students_exams << { student_id: student, exam_id: params[:exam_id] } }
+    Test.create(students_exams)
+    redirect_to :back, notice: 'Exam assigned successfully.'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_exam
@@ -69,6 +80,6 @@ class ExamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exam_params
-      params.require(:exam).permit(:start_duration, :end_duration, :exam_format_id)
+      params.require(:exam).permit(:name, :teacher_id, question_details_attributes: [:id, :exam_id, :question, :question_type])
     end
 end

@@ -1,0 +1,8 @@
+<h2> Welcome to Exam System </h2>
+
+<br>
+<%# if can? :manage, :all %>
+	<%= link_to 'Create students', new_student_path %>
+	<br>
+	<%= link_to 'Create exams', new_exam_path %>
+<%#end%>

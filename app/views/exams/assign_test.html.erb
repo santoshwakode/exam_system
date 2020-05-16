@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Assign Exam: <%= @exam.name %></h1>
+<%= form_tag assign_exam_exams_path, method: :post, remote: true do %>
+<%= hidden_field_tag :exam_id, @exam.id %>
+<table border="1">
+  <thead>
+    <tr>
+      <th><%= check_box_tag "assign_exam_test[all]"%></th>
+      <th>Student Name</th>
+      <th>Class</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= check_box_tag "assign_exam_test[#{student.id}]", "yes", false, class: "assign_test" %></td>
+        <td><%= student.name %></td>
+        <td><%= student.try(:educational_class) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= submit_tag "Assign", class: "button", data: { confirm: "Are you sure you want to assign exam?" }%>
+<%end%>
