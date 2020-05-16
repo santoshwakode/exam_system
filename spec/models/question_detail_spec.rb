@@ -1,5 +1,14 @@
-require 'rails_helper'
 
-RSpec.describe QuestionDetail, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+require 'spec_helper'
+
+describe QuestionDetail do
+
+  it { should belong_to(:exam) }
+
+  describe "#valid?" do
+
+    it { should validate_presence_of(:question) }
+    it { should validate_presence_of(:question_type) }
+  end 
+
 end

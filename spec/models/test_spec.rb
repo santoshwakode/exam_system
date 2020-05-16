@@ -1,5 +1,10 @@
-require 'rails_helper'
 
-RSpec.describe Test, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+require 'spec_helper'
+
+describe Test do
+
+  it { should have_many(:test_details) }
+  it { should belong_to(:student) }
+  it { should belong_to(:exam) }
+
 end
